@@ -29,7 +29,7 @@ When the dataset is ready, the current directory should be like this:
         - ml-tag.test.libfm
 
 ## Quick Example with Optimal parameters
-Use the following command to train the model with optimal parameters:
+Use the following command to train the model with the optimal parameters:
 ```
 # step into the code folder
 cd code
@@ -44,7 +44,7 @@ The current implementation supports regression classification, which optimizes R
 
 ## Performance Comparison
 ### Parameters
-For the sake of a quick demonstration for the improvement of our AFM model compared to original FM, we set the dimension of the ***embedding factor*** to be 16 (instead of 256 in our paper), and ***epoch*** as 20. Besides, ***learning rate***, ***dropout*** and ***lambda*** for regularization have been initialized optimally according to our systematically experiments.
+For the sake of a quick demonstration for the improvement of our AFM model compared to original FM, we set the dimension of the ***embedding factor*** to be 16 (instead of 256 in our paper), and ***epoch*** as 20. 
 
 #### Train
 Step into the ***code*** folder and train FM and AFM as follows. This will start to train our AFM model on the dataset ***frappe*** based on the pretrained model of FM. The parameters have been initialized optimally according to our experiments. It will loop 20 epochs and print the best epoch depending on the validation result.
