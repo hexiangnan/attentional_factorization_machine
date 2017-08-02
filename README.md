@@ -46,7 +46,7 @@ The current implementation supports regression classification, which optimizes R
 ### Parameters
 For the sake of a quick demonstration for the improvement of our AFM model compared to original FM, we set the dimension of the ***embedding factor*** to be 16 (instead of 256 in our paper), and ***epoch*** as 20. 
 
-#### Train
+### Train
 Step into the ***code*** folder and train FM and AFM as follows. This will start to train our AFM model on the dataset ***frappe*** based on the pretrained model of FM. The parameters have been initialized optimally according to our experiments. It will loop 20 epochs and print the best epoch depending on the validation result.
 ```
 # step into the code folder
@@ -68,7 +68,7 @@ After the trainning processes finish, the trained models will be saved into the 
         - ml-tag_16.data-00000-of-00001
         - ml-tag_16.index
         - ml-tag_16.meta
-#### Evaluate
+### Evaluate
 Now it's time to evaluate the pretrained models with the test datasets, which can be done by running ***AFM.py*** and ***FM.py*** with ***--process evaluate*** as follows:
 ```
 # evaluate the pretrained FM model
