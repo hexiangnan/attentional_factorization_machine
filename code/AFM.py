@@ -198,8 +198,8 @@ class AFM(BaseEstimator, TransformerMixin):
         trainable = self.freeze_fm == 0
         if self.pretrain_flag > 0 or self.micro_level_analysis:
             from_file = self.save_file
-            if self.micro_level_analysis:
-                from_file = self.save_file.replace('afm', 'fm')
+            # if self.micro_level_analysis:
+            from_file = self.save_file.replace('afm', 'fm')
             weight_saver = tf.train.import_meta_graph(from_file + '.meta')
             pretrain_graph = tf.get_default_graph()
             feature_embeddings = pretrain_graph.get_tensor_by_name('feature_embeddings:0')
@@ -364,7 +364,7 @@ class AFM(BaseEstimator, TransformerMixin):
         return RMSE
 
 def make_save_file(args):
-    pretrain_path = '../pretrain/fm_%s_%d' %(args.dataset, eval(args.hidden_factor)[1])
+    pretrain_path = '../pretrain/afm_%s_%d' %(args.dataset, eval(args.hidden_factor)[1])
     if args.mla:
         pretrain_path += '_mla'
     if not os.path.exists(pretrain_path):
