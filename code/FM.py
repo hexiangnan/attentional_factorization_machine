@@ -36,7 +36,7 @@ def parse_args():
                         help='flag for pretrain. 1: initialize from pretrain; 0: randomly initialize; -1: save to pretrain file')
     parser.add_argument('--batch_size', type=int, default=4096,
                         help='Batch size.')
-    parser.add_argument('--hidden_factor', type=int, default=16,
+    parser.add_argument('--hidden_factor', type=int, default=256,
                         help='Number of hidden factors.')
     parser.add_argument('--lamda', type=float, default=0,
                         help='Regularizer for bilinear part.')
@@ -365,14 +365,14 @@ if __name__ == '__main__':
     args = parse_args()
 
     # initialize the optimal parameters
-    if args.mla:
-        args.lr = 0.05
-        args.keep = 0.7
-        args.batch_norm = 0
-    else:
-        args.lr = 0.01
-        args.keep = 0.7
-        args.batch_norm = 1
+    # if args.mla:
+    #     args.lr = 0.05
+    #     args.keep = 0.7
+    #     args.batch_norm = 0
+    # else:
+    #     args.lr = 0.01
+    #     args.keep = 0.7
+    #     args.batch_norm = 1
 
     if args.process == 'train':
         train(args)

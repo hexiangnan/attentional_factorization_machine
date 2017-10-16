@@ -364,7 +364,7 @@ class AFM(BaseEstimator, TransformerMixin):
         return RMSE
 
 def make_save_file(args):
-    pretrain_path = '../pretrain/afm_%s_%d' %(args.dataset, eval(args.hidden_factor)[1])
+    pretrain_path = '../pretrain/fm_%s_%d' %(args.dataset, eval(args.hidden_factor)[1])
     if args.mla:
         pretrain_path += '_mla'
     if not os.path.exists(pretrain_path):
@@ -491,14 +491,14 @@ def evaluate(args):
 if __name__ == '__main__':
     args = parse_args()
 
-    if args.mla:
-        args.lr = 0.1
-        args.keep = '[1.0,1.0]'
-        args.lamda_attention = 10.0
-    else:
-        args.lr = 0.1
-        args.keep = '[1.0,0.5]'
-        args.lamda_attention = 100.0
+    # if args.mla:
+    #     args.lr = 0.1
+    #     args.keep = '[1.0,1.0]'
+    #     args.lamda_attention = 10.0
+    # else:
+    #     args.lr = 0.1
+    #     args.keep = '[1.0,0.5]'
+    #     args.lamda_attention = 100.0
 
     if args.process == 'train':
         train(args)
