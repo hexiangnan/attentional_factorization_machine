@@ -34,7 +34,7 @@ Use the following command to train the model with the optimal parameters:
 # step into the code folder
 cd code
 # train FM model and save as pretrain file
-python FM.py --dataset ml-tag --epoch 100 --pretrain -1 --batch_size 4096 --lr 0.01 --keep 0.7
+python FM.py --dataset ml-tag --epoch 100 --pretrain -1 --batch_size 4096 --hidden_factor 256 --lr 0.01 --keep 0.7
 # train AFM model using the pretrained weights from FM
 python AFM.py --dataset ml-tag --epoch 100 --pretrain 1 --batch_size 4096 --hidden_factor [8,256] --keep [1.0,0.5] --lamda_attention 2.0 --lr 0.1
 ```
