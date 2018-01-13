@@ -52,7 +52,7 @@ Step into the ***code*** folder and train FM and AFM as follows. This will start
 # step into the code folder
 cd code
 # train FM model with optimal parameters
-python FM.py --dataset ml-tag --epoch 20 --pretrain -1 --batch_size 4096 --lr 0.01 --keep 0.7
+python FM.py --dataset ml-tag --epoch 20 --pretrain -1 --batch_size 4096 --hidden_factor 16 --lr 0.01 --keep 0.7
 # train AFM model with optimal parameters
 python AFM.py --dataset ml-tag --epoch 20 --pretrain 1 --batch_size 4096 --hidden_factor [16,16] --keep [1.0,0.5] --lamda_attention 100.0 --lr 0.1
 ```
