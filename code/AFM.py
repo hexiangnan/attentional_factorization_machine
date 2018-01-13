@@ -364,7 +364,7 @@ class AFM(BaseEstimator, TransformerMixin):
         return RMSE
 
 def make_save_file(args):
-    pretrain_path = '../pretrain/afm_%s_%d' %(args.dataset, eval(args.hidden_factor)[1])
+    pretrain_path = '../pretrain/%s_%d' %(args.dataset, eval(args.hidden_factor)[1])
     if args.mla:
         pretrain_path += '_mla'
     if not os.path.exists(pretrain_path):
