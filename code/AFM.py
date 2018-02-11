@@ -127,10 +127,13 @@ class AFM(BaseEstimator, TransformerMixin):
             if self.attention:
                 self.attention_mul = tf.reshape(tf.matmul(tf.reshape(self.element_wise_product, shape=[-1, self.hidden_factor[1]]), \
                     self.weights['attention_W']), shape=[-1, num_interactions, self.hidden_factor[0]])
-                self.attention_exp = tf.exp(tf.reduce_sum(tf.multiply(self.weights['attention_p'], tf.nn.relu(self.attention_mul + \
-                    self.weights['attention_b'])), 2, keep_dims=True)) # None * (M'*(M'-1)) * 1
-                self.attention_sum = tf.reduce_sum(self.attention_exp, 1, keep_dims=True) # None * 1 * 1
-                self.attention_out = tf.div(self.attention_exp, self.attention_sum, name="attention_out") # None * (M'*(M'-1)) * 1
+                # self.attention_exp = tf.exp(tf.reduce_sum(tf.multiply(self.weights['attention_p'], tf.nn.relu(self.attention_mul + \
+                #     self.weights['attention_b'])), 2, keep_dims=True)) # None * (M'*(M'-1)) * 1
+                # self.attention_sum = tf.reduce_sum(self.attention_exp, 1, keep_dims=True) # None * 1 * 1
+                # self.attention_out = tf.div(self.attention_exp, self.attention_sum, name="attention_out") # None * (M'*(M'-1)) * 1
+                self.attention_relu = tf.reduce_sum(tf.multiply(self.weights['attention_p'], tf.nn.relu(self.attention_mul + \
+                    self.weights['attention_b'])), 2, keep_dims=True) # None * (M'*(M'-1)) * 1
+                self.attention_out = tf.nn.softmax(self.attention_relu)
                 self.attention_out = tf.nn.dropout(self.attention_out, self.dropout_keep[0]) # dropout
             
             # _________ Attention-aware Pairwise Interaction Layer _____________
@@ -346,7 +349,7 @@ class AFM(BaseEstimator, TransformerMixin):
         while len(batch_xs['X']) > 0:
             num_batch = len(batch_xs['Y'])
             feed_dict = {self.train_features: batch_xs['X'], self.train_labels: [[y] for y in batch_xs['Y']], self.dropout_keep: list(1.0 for i in range(len(self.keep))), self.train_phase: False}
-            a_exp, a_sum, a_out, batch_out = self.sess.run((self.attention_exp, self.attention_sum, self.attention_out, self.out), feed_dict=feed_dict)
+            a_out, batch_out = self.sess.run((self.attention_out, self.out), feed_dict=feed_dict)
             
             if batch_index == 0:
                 y_pred = np.reshape(batch_out, (num_batch,))
