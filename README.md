@@ -4,4 +4,6 @@ Jun Xiao, Hao Ye, Xiangnan He, Hanwang Zhang, Fei Wu and Tat-Seng Chua (2017). [
 
 We are finding license suitable to release this software. Codes will be released later. 
 
+Email contact: Dr. Xiangnan He <xiangnanhe@gmail.com>
+
 Last Update Date: 27 Feb, 2018
